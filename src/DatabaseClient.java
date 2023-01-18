@@ -37,11 +37,9 @@ public class DatabaseClient {
             String response = in.readLine();
             System.out.println(response);
             socket.close();
-            Thread.sleep(10000);
+
         } catch (IOException e) {
             System.err.println("ERROR: Failed to send operation request");
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
         }
 
     }

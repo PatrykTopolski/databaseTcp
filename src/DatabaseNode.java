@@ -38,6 +38,7 @@ public class DatabaseNode {
             while (running) {
                 Socket client = server.accept();
                 threadPool.submit(() -> handleClient(client));
+                System.out.println("Adding new Client to ThreadPool");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -109,6 +110,7 @@ public class DatabaseNode {
                     handleSearchCommand(key, out, UUID.randomUUID());
                 }
             } else if (command.equals("get-max")) {
+                System.out.println("asked for MAX");
                 if (parts.length > 1) {
                     System.out.println(UUID.fromString(parts[1]));
                     if (!uuids.contains(UUID.fromString(parts[1]))) {
@@ -124,6 +126,7 @@ public class DatabaseNode {
                     handleGetMaxCommand(out, uuid, String.valueOf(tcpPort));
                 }
             } else if (command.equals("get-min")) {
+                System.out.println("asked for MIN");
                 if (parts.length > 1) {
                     if (!uuids.contains(UUID.fromString(parts[1]))) {
                         uuids.add(UUID.fromString(parts[1]));
